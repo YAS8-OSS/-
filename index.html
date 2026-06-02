@@ -3,37 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHEIN | مساعد الأرنب التفاعلي</title>
+    <title>SHEIN | تعديل الأخطاء التفاعلي</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 1. شاشة الكسر الوردية (التي تختفي بعد الانفجار) -->
     <div class="glass-crack-overlay" id="crackOverlay">
         <div class="crack-effect"></div>
     </div>
 
-    <!-- الهيدر الرئيسي للموقع -->
     <header class="main-header">
         <div class="logo">SHEIN</div>
+        
         <div class="search-container">
-            <input type="text" placeholder="ابحثي عن تصاميم وموديلات...">
+            <input type="text" placeholder="ابحثي عن تصاميم، فساتين، ستريت وير...">
             <button class="search-btn">🔍</button>
         </div>
+
         <div class="header-icons">
-            <div class="profile-icon">👤</div>
-            <div class="cart-icon-container">
+            <div class="profile-icon" title="الحساب الشخصي">👤</div>
+            <div class="cart-icon-container" title="حقيبة التسوق">
                 <span class="cart-icon">🛒</span>
                 <span class="cart-badge">1</span>
             </div>
         </div>
     </header>
 
-    <!-- البانر الرئيسي -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>عالم الموضة بين يديكِ</h1>
+            <span class="hero-tag">تخفيضات الأطفال المبهجة</span>
+            <h1>خصم يصل إلى 80%</h1>
+            <a href="#" class="btn-shop">تسوقي الآن</a>
+        </div>
+    </section>
+
+    <section class="categories-section" id="categoriesSection">
+        <div class="circles-grid">
+            <div class="circle-item" onclick="selectCategory('نساء')">
+                <div class="circle-img c-women"></div>
+                <p>نساء</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('مقاسات كبيرة')">
+                <div class="circle-img c-plus"></div>
+                <p>مقاسات كبيرة</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('اطفال')">
+                <div class="circle-img c-kids"></div>
+                <p>أطفال</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('رجال')">
+                <div class="circle-img c-men"></div>
+                <p>رجال</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="rabbit-container" id="rabbitContainer">
+        <div class="pink-glow" id="pinkGlow"></div>
+
+        <div class="rabbit-chat-box" id="rabbitChatBox">
+            <p id="rabbitText">مرحباً! 🐰✨ أنا مساعدكِ الشخصي الذكي في شي إن. جئت لأصلح لكِ أي مشكلة في المقاسات أو الشحن فوراً!</p>
+            <div class="chat-controls" id="chatControls">
+                <button class="btn-next" onclick="rabbitScrollDown()">التالي ←</button>
+            </div>
+        </div>
+
+        <div class="rabbit-avatar">
+            <span class="rabbit-emoji">🐰</span>
+        </div>
+    </div>
+
+    <script>
+        // أنيميشن انفجار الشاشة الوردية التلقائي
+        window.onload = function() {
+            setTimeout(() => {
+                const overlay = document.getElementById('crackOverlay');
+                overlay.classList.add('explode');
+                
+                setTimeout(() => {
+                    document.getElementById('rabbitChatBox').classList.add('show-box');
+                    document.getElementById('pinkGlow').style.opacity = '1';
+                }, 600);
+            }, 500);
+        };
+
+        // الأرنب يسحب الشاشة للأسفل نحو الأقسام
+        function rabbitScrollDown() {
+            document.getElementById('categoriesSection').scrollIntoView({ behavior: 'smooth' });
+            
+            const textElement = document.getElementById('rabbitText');
+            textElement.innerHTML = "ألقي نظرة تحت! ⬇️ هذي هي الخيارات المتوفرة والمصلحة. انقري على القسم اللي يعجبكِ وعلميني إذا عندكِ مشكلة بالمقاس!";
+            
+            document.getElementById('chatControls').innerHTML = ''; 
+        }
+
+        // حل مشكلة المقاسات التفاعلية عند النقر
+        function selectCategory(categoryName) {
+            const textElement = document.getElementById('rabbitText');
+            
+            if(categoryName === 'نساء' || categoryName === 'مقاسات كبيرة') {
+                textElement.innerHTML = `اخترتِ قسم ${categoryName}! 🌟 إذا عندكِ مشكلة أو قلق من المقاسات، لا تشيلين هم! الواجهة الجديدة الحين مصلحة وتظهر لكِ جدول المقاسات بالسنتيمتر تحت كل قطعة مباشرة عشان تضمنينها 100%! 😉`;
+            } else {
+                textElement.innerHTML = `دخلنا قسم ${categoryName}! 🛒 هل تحبين أساعدكِ في حل أي مشكلة أخرى هنا؟`;
+            }
+        }
+    </script>
+</body>
+</html>
             <p>مفهوم تفاعلي متطور لتجربة تسوق لا تُنسى.</p>
         </div>
     </section>
