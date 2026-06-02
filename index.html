@@ -3,37 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHEIN | M O D E R N</title>
+    <title>SHEIN | مساعد الأرنب التفاعلي</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- الهيدر والقائمة العلويّة -->
+    <!-- 1. شاشة الكسر الوردية (التي تختفي بعد الانفجار) -->
+    <div class="glass-crack-overlay" id="crackOverlay">
+        <div class="crack-effect"></div>
+    </div>
+
+    <!-- الهيدر الرئيسي للموقع -->
     <header class="main-header">
         <div class="logo">SHEIN</div>
-        <nav class="nav-links">
-            <a href="#">الجديد</a>
-            <a href="#">الملابس</a>
-            <a href="#">المجموعات الحصرية</a>
-            <a href="#">تخفيضات</a>
-        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="ابحثي عن تصاميم وموديلات...">
+            <button class="search-btn">🔍</button>
+        </div>
         <div class="header-icons">
-            <span>🔍</span>
-            <span>🛒</span>
+            <div class="profile-icon">👤</div>
+            <div class="cart-icon-container">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-badge">1</span>
+            </div>
         </div>
     </header>
 
-    <!-- البانر الرئيسي الفخم (Hero Section) -->
+    <!-- البانر الرئيسي -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>مفهوم جديد للأزياء العصرية</h1>
-            <p>اكتشفي مجموعة صيف 2026 الحصرية بلمسات تجمع بين ستايل الشارع والأناقة الكلاسيكية.</p>
-            <a href="#" class="btn-shop">تسوقي الآن</a>
+            <h1>عالم الموضة بين يديكِ</h1>
+            <p>مفهوم تفاعلي متطور لتجربة تسوق لا تُنسى.</p>
         </div>
     </section>
 
-    <!-- قسم المنتجات المبتكر -->
+    <!-- 2. قسم خيارات الأقسام (المستوحى من صورتك 1780415171896.jpeg) -->
+    <section class="categories-section" id="categoriesSection">
+        <h2 class="section-title">الأقسام الرئيسية</h2>
+        <div class="circles-grid">
+            <div class="circle-item" onclick="selectCategory('نساء')">
+                <div class="circle-img c-women"></div>
+                <p>نساء</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('أطفال')">
+                <div class="circle-img c-kids"></div>
+                <p>أطفال</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('رجال')">
+                <div class="circle-img c-men"></div>
+                <p>رجال</p>
+            </div>
+            <div class="circle-item" onclick="selectCategory('مقاسات كبيرة')">
+                <div class="circle-img c-plus"></div>
+                <p>مقاسات كبيرة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. مساعد الأرنب المتطور (صندوق الترحيب، الأرنب، والهالة الوردية) -->
+    <div class="rabbit-container" id="rabbitContainer">
+        <!-- هالة وردية مشعة خلف الأرنب -->
+        <div class="pink-glow" id="pinkGlow"></div>
+
+        <!-- صندوق محادثة الأرنب التفاعلي مع أزرار التالي وحل المشاكل -->
+        <div class="rabbit-chat-box" id="rabbitChatBox">
+            <p id="rabbitText">مرحباً! 🐰✨ أنا مساعدكِ الشخصي هنا في شي إن. جئت لأحل لكِ أي مشكلة أو أساعدكِ في اختيار الستايل الفخم!</p>
+            <div class="chat-controls" id="chatControls">
+                <button class="btn-next" onclick="rabbitScrollDown()">التالي ←</button>
+            </div>
+        </div>
+
+        <!-- الأرنب الذكي -->
+        <div class="rabbit-avatar">
+            <span class="rabbit-emoji">🐰</span>
+        </div>
+    </div>
+
+    <!-- السكريبت البرمجي التفاعلي للحركات والتحكم -->
+    <script>
+        // دالة تفعيل الكسر عند دخول الصفحة
+        window.onload = function() {
+            setTimeout(() => {
+                const overlay = document.getElementById('crackOverlay');
+                overlay.classList.add('explode'); // تشغيل تأثير الانفجار والاختفاء
+                
+                // بعد انتهاء الانفجار، يظهر صندوق الأرنب وتبدأ الهالة الوردية بالنبض
+                setTimeout(() => {
+                    document.getElementById('rabbitChatBox').classList.add('show-box');
+                    document.getElementById('pinkGlow').style.opacity = '1';
+                }, 600);
+            }, 500);
+        };
+
+        // دالة ضغط زر "التالي": الأرنب يسحب الشاشة تحت للخيارات
+        function rabbitScrollDown() {
+            // سحب الشاشة بنعومة مذهلة نحو قسم الخيارات حقت النساء والأطفال
+            document.getElementById('categoriesSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // تغيير نص الأرنب ليطلب تحديد القسم
+            const textElement = document.getElementById('rabbitText');
+            textElement.innerHTML = "ألقي نظرة تحت! ⬇️ هذي هي الخيارات المتوفرة (نساء، أطفال، رجال..). انقري على القسم اللي يعجبكِ وعلميني إذا واجهتكِ أي مشكلة!";
+            
+            // إخفاء زر التالي لأننا انتقلنا للخطوة القادمة
+            document.getElementById('chatControls').innerHTML = '';
+        }
+
+        // دالة عند النقر على قسم (مثال: عجبها فستان بس عندها مشكلة مقاس)
+        function selectCategory(categoryName) {
+            const textElement = document.getElementById('rabbitText');
+            
+            if(categoryName === 'نساء' || categoryName === 'مقاسات كبيرة') {
+                textElement.innerHTML = `اخترتِ قسم ${categoryName}! ستايل يجنن وفخم وبطل كالعادة.. 🌟 بس كأنكِ قلقانة من المقاسات؟ لا تشيلين هم، مقاسات هذا القسم مضبوطة 100%، ونصيحتي لكِ خذي مقاسكِ المعتاد و شيكي على جدول المقاسات بالسنتيمتر تحت القطعة مباشرة عشان تضمنينها! 😉`;
+            } else {
+                textElement.innerHTML = `دخلنا قسم ${categoryName}! 🛒 هل تحبين أساعدكِ في اختيار التنسيقات المودرن لهذا القسم، أو عندكِ سؤال عن الشحن؟`;
+            }
+        }
+    </script>
+</body>
+</html>
     <section class="products-section">
         <h2>القطع المختارة بعناية</h2>
         <div class="products-grid">
